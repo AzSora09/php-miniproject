@@ -1,3 +1,6 @@
+<?php
+include("connection.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -413,16 +416,22 @@
                               
                               <div id="myTabContent" class="tab-content">
                                   <div role="tabpanel" class="tab-pane fade in active" id="1" aria-labelledby="cat-1">
-                                      <div class="row clearfix">
+                                        <?php
+                                        $query = mysqli_query($conn,"select * from products limit 8");
+                                        $all_rows = mysqli_fetch_all($query, MYSQLI_ASSOC);
+                                        $chunks = array_chunk($all_rows, 4);
+                                        $total_chunks = count($chunks);
+                                        for($i=0; $i<=$total_chunks-1 ;$i++){
+                                        ?>
+                                        <div class="row clearfix">
+                                        <?php
+                                        foreach ($chunks[$i] as $row) {
+                                        ?>
                                           <div class="col-md-3 prdct-grid">
                                               <div class="product-fade">
 													<div class="product-fade-wrap">
                                                         <div id="product-image" class="owl-carousel owl-theme">
-                                                            <div class="item"><img src="images/p-1.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-2.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-3.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-4.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-5.jpg" alt="" class="img-responsive"></div>
+                                                            <div class="item"><img src="./img/<?php echo $row['image']?>" alt="" class="img-responsive"></div>
                                                         </div>
 														<div class="product-fade-ct">
                                                             <div class="product-fade-control">
@@ -430,14 +439,6 @@
                                                                     <a href=""><i class="fa fa-heart"></i></a>
                                                                     <a href=""><i class="fa fa-retweet"></i></a>
                                                                     <a href=""><i class="fa fa-search"></i></a>
-                                                                </div>
-                                                                <div class="to-right">
-                                                                    <div id="product-control" class="owl-carousel owl-theme clearfix">
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                    </div>
                                                                 </div>
                                                                 <div class="clearfix"></div>
                                                                 <a href="" class="btn btn-to-cart"><span class="bag"></span><span>Add To cart</span><div class="clearfix"></div></a>
@@ -448,301 +449,16 @@
                                               </div>
                                               
                                               <div class="product-name">
-                                                  <a href="">Adidas Striped Men's Round Neck T-Shirt</a>
+                                                  <a href=""><?php echo $row['name']?></a>
                                               </div>
                                               <div class="star-1"></div>
                                               <div class="product-price">
-                                                  <span>$19.00</span> $15.00
+                                                  <?php echo $row['price']?>
                                               </div>
                                           </div>
-                                          <div class="col-md-3 prdct-grid">
-                                              <div class="product-fade">
-													<div class="product-fade-wrap">
-                                                        <div id="product-image2" class="owl-carousel owl-theme">
-                                                            <div class="item"><img src="images/p-2.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-3.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-4.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-5.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-1.jpg" alt="" class="img-responsive"></div>
-                                                        </div>
-														<div class="product-fade-ct">
-                                                            <div class="product-fade-control">
-                                                                <div class="to-left">
-                                                                    <a href=""><i class="fa fa-heart"></i></a>
-                                                                    <a href=""><i class="fa fa-retweet"></i></a>
-                                                                    <a href=""><i class="fa fa-search"></i></a>
-                                                                </div>
-                                                                <div class="to-right">
-                                                                    <div id="product-control2" class="owl-carousel owl-theme">
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        
-                                                                    </div>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                                <a href="" class="btn btn-to-cart"><span class="bag"></span><span>Add To cart</span><div class="clearfix"></div></a>
-                                                            </div>
-                                                            
-														</div>
-													</div>
-                                              </div>
-                                              <div class="product-name">
-                                                  <a href="">Women's Jeans</a>
-                                              </div>
-                                              <div class="star-1"></div>
-                                              <div class="product-price">
-                                                  <span>$19.00</span> $15.00
-                                              </div>
-                                          </div>
-                                          <div class="col-md-3 prdct-grid">
-                                              <div class="product-fade">
-													<div class="product-fade-wrap">
-                                                        <div id="product-image3" class="owl-carousel owl-theme">
-                                                            <div class="item"><img src="images/p-3.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-4.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-5.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-1.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-2.jpg" alt="" class="img-responsive"></div>
-                                                        </div>
-														<div class="product-fade-ct">
-                                                            <div class="product-fade-control">
-                                                                <div class="to-left">
-                                                                    <a href=""><i class="fa fa-heart"></i></a>
-                                                                    <a href=""><i class="fa fa-retweet"></i></a>
-                                                                    <a href=""><i class="fa fa-search"></i></a>
-                                                                </div>
-                                                                <div class="to-right">
-                                                                    <div id="product-control3" class="owl-carousel owl-theme">
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        
-                                                                    </div>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                                <a href="" class="btn btn-to-cart"><span class="bag"></span><span>Add To cart</span><div class="clearfix"></div></a>
-                                                            </div>
-                                                            
-														</div>
-													</div>
-                                              </div>
-                                              <div class="product-name">
-                                                  <a href="">Running Shoes</a>
-                                              </div>
-                                              <div class="star-1"></div>
-                                              <div class="product-price">
-                                                  <span>$19.00</span> $15.00
-                                              </div>
-                                          </div>
-                                          <div class="col-md-3 prdct-grid">
-                                              <div class="product-fade">
-													<div class="product-fade-wrap">
-                                                        <div id="product-image4" class="owl-carousel owl-theme">
-                                                            <div class="item"><img src="images/p-4.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-5.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-1.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-2.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-3.jpg" alt="" class="img-responsive"></div>
-                                                        </div>
-														<div class="product-fade-ct">
-                                                            <div class="product-fade-control">
-                                                                <div class="to-left">
-                                                                    <a href=""><i class="fa fa-heart"></i></a>
-                                                                    <a href=""><i class="fa fa-retweet"></i></a>
-                                                                    <a href=""><i class="fa fa-search"></i></a>
-                                                                </div>
-                                                                <div class="to-right">
-                                                                    <div id="product-control4" class="owl-carousel owl-theme">
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        
-                                                                    </div>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                                <a href="" class="btn btn-to-cart"><span class="bag"></span><span>Add To cart</span><div class="clearfix"></div></a>
-                                                            </div>
-                                                            
-														</div>
-													</div>
-                                              </div>
-                                              <div class="product-name">
-                                                  <a href="">men's Jeans</a>
-                                              </div>
-                                              <div class="star-1"></div>
-                                              <div class="product-price">
-                                                  <span>$19.00</span> $15.00
-                                              </div>
-                                          </div>
-                                          
-                                          <div class="clearfix"></div>
-                                          <div class="col-md-3 prdct-grid">
-                                              <div class="product-fade">
-													<div class="product-fade-wrap">
-                                                        <div id="product-image5" class="owl-carousel owl-theme">
-                                                            <div class="item"><img src="images/p-5.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-1.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-2.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-3.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-4.jpg" alt="" class="img-responsive"></div>
-                                                        </div>
-														<div class="product-fade-ct">
-                                                            <div class="product-fade-control">
-                                                                <div class="to-left">
-                                                                    <a href=""><i class="fa fa-heart"></i></a>
-                                                                    <a href=""><i class="fa fa-retweet"></i></a>
-                                                                    <a href=""><i class="fa fa-search"></i></a>
-                                                                </div>
-                                                                <div class="to-right">
-                                                                    <div id="product-control5" class="owl-carousel owl-theme">
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        
-                                                                    </div>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                                <a href="" class="btn btn-to-cart"><span class="bag"></span><span>Add To cart</span><div class="clearfix"></div></a>
-                                                            </div>
-                                                            
-														</div>
-													</div>
-                                              </div>
-                                              <div class="product-name">
-                                                  <a href="">Striped Men's Round Neck T-Shirt</a>
-                                              </div>
-                                              <div class="star-1"></div>
-                                              <div class="product-price">
-                                                  <span>$19.00</span> $15.00
-                                              </div>
-                                          </div>
-                                          <div class="col-md-3 prdct-grid">
-                                              <div class="product-fade">
-													<div class="product-fade-wrap">
-                                                        <div id="product-image6" class="owl-carousel owl-theme">
-                                                            <div class="item"><img src="images/p-6.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-7.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-8.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-5.jpg" alt="" class="img-responsive"></div>
-                                                        </div>
-														<div class="product-fade-ct">
-                                                            <div class="product-fade-control">
-                                                                <div class="to-left">
-                                                                    <a href=""><i class="fa fa-heart"></i></a>
-                                                                    <a href=""><i class="fa fa-retweet"></i></a>
-                                                                    <a href=""><i class="fa fa-search"></i></a>
-                                                                </div>
-                                                                <div class="to-right">
-                                                                    <div id="product-control6" class="owl-carousel owl-theme">
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        
-                                                                    </div>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                                <a href="" class="btn btn-to-cart"><span class="bag"></span><span>Add To cart</span><div class="clearfix"></div></a>
-                                                            </div>
-                                                            
-														</div>
-													</div>
-                                              </div>
-                                              <div class="product-name">
-                                                  <a href="">Women's Round Neck T-Shirt</a>
-                                              </div>
-                                              <div class="star-1"></div>
-                                              <div class="product-price">
-                                                  <span>$19.00</span> $15.00
-                                              </div>
-                                          </div>
-                                          <div class="col-md-3 prdct-grid">
-                                              <div class="product-fade">
-													<div class="product-fade-wrap">
-                                                        <div id="product-image7" class="owl-carousel owl-theme">
-                                                            <div class="item"><img src="images/p-7.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-8.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-5.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-6.jpg" alt="" class="img-responsive"></div>
-                                                        </div>
-														<div class="product-fade-ct">
-                                                            <div class="product-fade-control">
-                                                                <div class="to-left">
-                                                                    <a href=""><i class="fa fa-heart"></i></a>
-                                                                    <a href=""><i class="fa fa-retweet"></i></a>
-                                                                    <a href=""><i class="fa fa-search"></i></a>
-                                                                </div>
-                                                                <div class="to-right">
-                                                                    <div id="product-control7" class="owl-carousel owl-theme">
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        
-                                                                    </div>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                                <a href="" class="btn btn-to-cart"><span class="bag"></span><span>Add To cart</span><div class="clearfix"></div></a>
-                                                            </div>
-                                                            
-														</div>
-													</div>
-                                              </div>
-                                              <div class="product-name">
-                                                  <a href="">men's Jeans</a>
-                                              </div>
-                                              <div class="star-1"></div>
-                                              <div class="product-price">
-                                                  <span>$19.00</span> $15.00
-                                              </div>
-                                          </div>
-                                          <div class="col-md-3 prdct-grid">
-                                              <div class="product-fade">
-													<div class="product-fade-wrap">
-                                                        <div id="product-image8" class="owl-carousel owl-theme">
-                                                            <div class="item"><img src="images/p-8.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-5.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-6.jpg" alt="" class="img-responsive"></div>
-                                                            <div class="item"><img src="images/p-7.jpg" alt="" class="img-responsive"></div>
-                                                        </div>
-														<div class="product-fade-ct">
-                                                            <div class="product-fade-control">
-                                                                <div class="to-left">
-                                                                    <a href=""><i class="fa fa-heart"></i></a>
-                                                                    <a href=""><i class="fa fa-retweet"></i></a>
-                                                                    <a href=""><i class="fa fa-search"></i></a>
-                                                                </div>
-                                                                <div class="to-right">
-                                                                    <div id="product-control8" class="owl-carousel owl-theme">
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        <div class="item"><div class="bullets"></div></div>
-                                                                        
-                                                                    </div>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                                <a href="" class="btn btn-to-cart"><span class="bag"></span><span>Add To cart</span><div class="clearfix"></div></a>
-                                                            </div>
-                                                            
-														</div>
-													</div>
-                                              </div>
-                                              <div class="product-name">
-                                                  <a href="">Heels</a>
-                                              </div>
-                                              <div class="star-1"></div>
-                                              <div class="product-price">
-                                                  <span>$19.00</span> $15.00
-                                              </div>
-                                          </div>
-
-                                      </div>
+                                          <?php }
+                                          echo '</div>';
+                                          } ?>
                                   </div>
                                   
                                   <div role="tabpanel" class="tab-pane fade" id="2" aria-labelledby="cat-2">
