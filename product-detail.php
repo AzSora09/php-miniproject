@@ -1,3 +1,8 @@
+<?php
+// Start the session + Cart addition function
+include("query.php")
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,11 +67,11 @@
 								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
+									<div class="item-slick3" data-thumb="./img/<?php echo $col["image"]; ?>">
 										<div class="wrap-pic-w pos-relative">
 											<img src="./img/<?php echo $col["image"]; ?>" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="./img/<?php echo $col["image"]; ?>">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
@@ -93,28 +98,30 @@
 							<!--  -->
 							<div class="p-t-33">
 								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-204 flex-w flex-m respon6-next">
-										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
+									<form action="" method="post">
+										<div class="size-204 flex-w flex-m respon6-next">
+											<div class="wrap-num-product flex-w m-r-20 m-tb-10">
+												<input type="hidden" name="pid" value="<?php echo $col["id"]; ?>">
+												<input type="hidden" name="pname" value="<?php echo $col["name"]; ?>">
+												<input type="hidden" name="pprice" value="<?php echo $col["price"]; ?>">
+												<input type="hidden" name="pimg" value="<?php echo $col["image"]; ?>">
+
+												<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+													<i class="fs-16 zmdi zmdi-minus"></i>
+												</div>
+
+												<input class="mtext-104 cl3 txt-center num-product" type="number" name="pqty" value="1">
+
+												<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+													<i class="fs-16 zmdi zmdi-plus"></i>
+												</div>
 											</div>
 
-											<input type="hidden" name="pid" value="<?php echo $col["id"];?>">
-											<input type="hidden" name="pname" value="<?php echo $col["name"];?>">
-											<input type="hidden" name="pprice" value="<?php echo $col["price"];?>">
-											<input type="hidden" name="pimg" value="<?php echo $col["image"];?>">
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="pqty" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
+											<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" name="addtocart">
+												Add to cart
+											</button>
 										</div>
-
-										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart
-										</button>
-									</div>
+									</form>
 								</div>
 							</div>
 							<!--  -->

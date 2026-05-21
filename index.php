@@ -1,3 +1,7 @@
+<?php
+// Start the session + Cart addition function
+include("query.php")
+?>
 <!DOCTYPE html>
 <html lang="en">
 
