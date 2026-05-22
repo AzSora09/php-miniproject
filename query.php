@@ -11,6 +11,10 @@ if (isset($_POST["addtocart"])) {
             "image" => $_POST["pimg"],
             "qty" => $_POST["pqty"]
         );
+        echo "<script>
+        alert('Product added to cart successfully');
+        location.href='index.php';
+        </script>";
     } else {
         $_SESSION["Cart"][0] = array(
             "id" => $_POST["pid"],
@@ -19,6 +23,10 @@ if (isset($_POST["addtocart"])) {
             "image" => $_POST["pimg"],
             "qty" => $_POST["pqty"]
         );
+        echo "<script>
+        alert('Product added to cart successfully');
+        location.href='index.php';
+        </script>";
     }
 }
 ?>

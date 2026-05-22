@@ -59,6 +59,12 @@
                     </div>
                 </div>
             </div>
-        <?php } ?>
+        <?php }
+        else{
+            echo "<h4 class=''>Your Cart is Empty</h4>
+            <a href='product.php' class='flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 mt-3'>
+                Shop Now
+            </a>";
+        } ?>
     </div>
 </div>
