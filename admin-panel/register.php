@@ -91,7 +91,7 @@
                                          alert('Account created successfully!')
                                          </script>";
 
-                                    $query = mysqli_query($conn, "insert into accounts (first_name, last_name, email, password) values ('$fname', '$lname', '$email', '$pass')");
+                                    $query = mysqli_query($conn, "insert into accounts (first_name, last_name, email, password, role) values ('$fname', '$lname', '$email', '$pass', 'admin')");
                                     if ($query) {
                                         echo "<script>location.href = 'login.php'</script>";
                                     }

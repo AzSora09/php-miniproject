@@ -1,6 +1,10 @@
 <?php
 // Start the session + Cart addition function
-include("query.php")
+include("query.php");
+echo
+"<script>
+alert(".$_SESSION['username'].")
+</script>"
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +31,7 @@ include("query.php")
 
 
 	<!-- breadcrumb -->
-	<div class="container">
+	<div class="container mt-5">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
 				Home
@@ -86,8 +90,7 @@ include("query.php")
 											<?php $total += $Cart["price"] * $Cart["qty"]; ?>
 										</tr>
 								<?php }
-								}
-								else{
+								} else {
 									echo "<script>location.href='index.php'</script>";
 								}
 								?>
@@ -126,7 +129,7 @@ include("query.php")
 
 							<div class="size-209">
 								<span class="mtext-110 cl2">
-									<?php if(isset($total))?>
+									<?php if (isset($total)) ?>
 									Rs. <?php echo $total ?>
 								</span>
 							</div>
@@ -190,9 +193,18 @@ include("query.php")
 							</div>
 						</div>
 
-						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-							Proceed to Checkout
-						</button>
+						<?php
+						if (isset($_SESSION["username"])) {
+						?>
+							<a href="" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+								Proceed to Checkout
+							</a>
+						<?php
+						} else { ?>
+							<a href="./login.php" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+								Login to Proceed
+							</a>
+						<?php } ?>
 					</div>
 				</div>
 			</div>

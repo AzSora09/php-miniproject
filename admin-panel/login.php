@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION["username"])!=null){
+if (isset($_SESSION["username"]) != null) {
     echo "<script>location.href = 'index.php'</script>";
 }
 ?>
@@ -83,7 +83,7 @@ if (isset($_SESSION["username"])!=null){
                                     if (isset($_POST['submit'])) {
                                         $email = $_POST['email'];
                                         $pass = $_POST['pass'];
-                                        
+
                                         $query = mysqli_query($conn, "Select * from accounts where email = '$email'");
 
                                         $row = mysqli_fetch_assoc($query);
@@ -92,9 +92,13 @@ if (isset($_SESSION["username"])!=null){
                                             echo "<script>alert('Account not found!')</script>";
                                         } else if ($row["email"] == $email) {
                                             if ($pass == $row["password"]) {
-                                                echo "<script>location.href = 'index.php'</script>";
-                                                $_SESSION["username"] = $row["first_name"] . " " . $row["last_name"];
-                                            }   else if ($pass != $row["password"]) {
+                                                if ($row["role"] == "admin") {
+                                                    echo "<script>location.href = 'index.php'</script>";
+                                                    $_SESSION["username"] = $row["first_name"] . " " . $row["last_name"];
+                                                } else if ($row["role"] != "admin") {
+                                                    echo "<script>alert('User not permitted to access admin panel')</script>";
+                                                }
+                                            } else if ($pass != $row["password"]) {
                                                 echo "<script>alert('Password not matched')</script>";
                                             }
                                         }
