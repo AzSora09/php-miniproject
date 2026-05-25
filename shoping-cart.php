@@ -1,10 +1,6 @@
 <?php
 // Start the session + Cart addition function
 include("query.php");
-echo
-"<script>
-alert(".$_SESSION['username'].")
-</script>"
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -196,7 +192,7 @@ alert(".$_SESSION['username'].")
 						<?php
 						if (isset($_SESSION["username"])) {
 						?>
-							<a href="" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+							<a href="?checkout" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
 								Proceed to Checkout
 							</a>
 						<?php

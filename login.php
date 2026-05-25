@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,8 +59,11 @@
                 echo "<script>alert('Account not found!')</script>";
             } else if ($row["email"] == $email) {
                 if ($pass == $row["password"]) {
+
                     $_SESSION["username"] = $row["first_name"] . " " . $row["last_name"];
-                    echo "<script>location.href = 'index.php'</script>";
+                    if(isset($_SESSION["username"])){
+                        echo "<script>location.href = 'index.php'</script>";
+                    }
                 } else if ($pass != $row["password"]) {
                     echo "<script>alert('Password not matched')</script>";
                 }
