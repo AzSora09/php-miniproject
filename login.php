@@ -61,9 +61,9 @@ session_start();
                 if ($pass == $row["password"]) {
 
                     $_SESSION["username"] = $row["first_name"] . " " . $row["last_name"];
-                    if(isset($_SESSION["username"])){
-                        echo "<script>location.href = 'index.php'</script>";
-                    }
+                    $_SESSION["user_id"] = $row["id"];
+                    $_SESSION["user_role"] = $row["role"];
+                    echo "<script>location.href = 'index.php'</script>";
                 } else if ($pass != $row["password"]) {
                     echo "<script>alert('Password not matched')</script>";
                 }

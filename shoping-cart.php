@@ -407,3 +407,30 @@ include("query.php");
 </body>
 
 </html>
+
+
+<?php
+if (isset($_GET['checkout'])) {
+	if (isset($_SESSION["username"])) {
+		$uid = $_SESSION["user_id"];
+		$total = 0;
+		foreach ($_SESSION["Cart"] as $Cart) {
+			$total += $Cart["price"] * $Cart["qty"];
+		}
+
+		mysqli_query($conn, "INSERT INTO orders (`date`, `customer_id`, `total_price`) VALUES (NOW(), '$uid', '$total')");
+
+		$order_id = mysqli_insert_id($conn);
+
+		foreach ($_SESSION["Cart"] as $Cart) {
+			$pid = $Cart["id"];
+			$qty = $Cart["qty"];
+			$price = $Cart["price"];
+			mysqli_query($conn, "INSERT INTO order_item_table (`order_id`, `product_id`, `quantity`, `price`) VALUES ('$order_id', '$pid', '$qty', '$price')");
+		}
+		unset($_SESSION["Cart"]);
+		echo "<script>alert('Order Placed!')</script>";
+		echo "<script>location.href='index.php'</script>";
+	}
+}
+?>
