@@ -418,7 +418,7 @@ if (isset($_GET['checkout'])) {
 			$total += $Cart["price"] * $Cart["qty"];
 		}
 
-		mysqli_query($conn, "INSERT INTO orders (`date`, `customer_id`, `total_price`) VALUES (NOW(), '$uid', '$total')");
+		mysqli_query($conn, "INSERT INTO orders (`date`, `customer_id`, `total_price`) VALUES (NOW(), $uid, $total)");
 
 		$order_id = mysqli_insert_id($conn);
 
@@ -426,7 +426,7 @@ if (isset($_GET['checkout'])) {
 			$pid = $Cart["id"];
 			$qty = $Cart["qty"];
 			$price = $Cart["price"];
-			mysqli_query($conn, "INSERT INTO order_item_table (`order_id`, `product_id`, `quantity`, `price`) VALUES ('$order_id', '$pid', '$qty', '$price')");
+			mysqli_query($conn, "INSERT INTO order_item_table (`order_id`, `product_id`, `quantity`, `price`) VALUES ($order_id, $pid, $qty, $price)");
 		}
 		unset($_SESSION["Cart"]);
 		echo "<script>alert('Order Placed!')</script>";
